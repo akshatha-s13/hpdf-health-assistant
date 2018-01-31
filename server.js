@@ -28,7 +28,11 @@ res.sendFile(path.join(__dirname +'/index.html'));
 });
 
 app.post('/wit',function(req,res){
+<<<<<<< HEAD
 var question=req.body.Input;
+=======
+var question=req.body.Input
+>>>>>>> c40284bf951f6370b45569a59bc79d5187b90ede
 const client = new Wit({accessToken: 'OMST7LGOVDCUU2IFQNWYNQCKKMSZBBD4'});
 var pool=new Pool(config);
 
@@ -36,11 +40,15 @@ var pool=new Pool(config);
 client.message(question, {})
 .then((data) => {
 console.log(JSON.stringify(data));
+<<<<<<< HEAD
 
 var intent=data.entities.intent[0].value;
 switch(intent)
 {
 case 'findMedicine' :
+=======
+var med=''
+>>>>>>> c40284bf951f6370b45569a59bc79d5187b90ede
 var condition=data.entities.condition[0].value;
 pool.query('SELECT * FROM medicines WHERE "condition"=$1',[condition],function(err,result){
         
@@ -53,6 +61,7 @@ else{
             
 res.send(JSON.parse(JSON.stringify({"Response" : result.rows[0].drug})));
 }
+<<<<<<< HEAD
 });
 
 break;
@@ -77,6 +86,10 @@ break;
 default :  res.send(JSON.parse(JSON.stringify({"Response" : "Unable to find intent.Try another query"})));
 }
 
+=======
+     var output="Suggested medicine for "+condition+" is "+med;
+     res.send(output);
+>>>>>>> c40284bf951f6370b45569a59bc79d5187b90ede
 })
 .catch(console.error);
 });
