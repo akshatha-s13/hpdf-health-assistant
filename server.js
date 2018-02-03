@@ -13,9 +13,9 @@ var config={
     
 	database : 'hasuradb',
 	user: 'admin',
-	host:  'localhost',//postgres.beady27-hasura',
+	host:  'postgres.beady27-hasura',
 
-	port: '6432',//5432
+	port: '5432',
 	password: 'dujxara-bxuzesb-agippuh-odcuwo'
 
 };
@@ -61,7 +61,7 @@ app.post('/wit',function(req,res){
    						res.send(JSON.parse(JSON.stringify({"Response" : json}))); 
   						}
 					else{
-						json=result.rows[0].drug;
+						json="Suggested Medicine for "+condition+" is "+result.rows[0].drug;
    						res.send(JSON.parse(JSON.stringify({"Response" : json})));
    					    }
 				     }
